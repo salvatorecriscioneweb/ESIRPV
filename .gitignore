@@ -18,6 +18,8 @@ frontend/yarn-error.log*
 # Editor directories and files
 frontend/.idea
 frontend/.vscode
+backend/.idea
+backend/.vscode
 *.suo
 *.ntvs*
 *.njsproj
