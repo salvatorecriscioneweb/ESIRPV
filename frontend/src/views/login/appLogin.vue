@@ -15,22 +15,30 @@
 import { ref } from 'vue'
 import router from '../../router'
 import dbg from '../../utils/debug'
-
+import { login as loginAPI } from '../../api/index'
+import { ILoginResponse } from '@/interfaces'
+import { saveToLocalStorage } from '@/utils/localStorage'
 const username = ref('')
 const password = ref('')
 
-function login() {
+async function login() {
   dbg(`Login func start with ${username.value} ${password.value}`)
 
   if (!username.value || !password.value) {
     dbg('Login missing validation')
     return
   }
+  const { data, status } = (await loginAPI({
+    username: username.value,
+    password: password.value,
+  })) as { data: ILoginResponse; status: number }
 
-  // TODO: Make request + md5 password
-  // TODO: Save to local storage
+  console.log(data)
 
-  router.replace('/orders')
+  if (data.token && status == 200) {
+    saveToLocalStorage('user', data.token)
+    router.replace('/orders')
+  }
   dbg('Login func ends')
 }
 </script>

@@ -1,3 +1,4 @@
+import useToken from '@/hooks/useToken'
 import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
@@ -16,6 +17,18 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+})
+
+router.beforeEach(async (to) => {
+  if (to.path === '/login') return true
+  const user = useToken()
+  if (!!user && user !== '') {
+    return true
+  } else {
+    return {
+      name: 'Login',
+    }
+  }
 })
 
 export default router

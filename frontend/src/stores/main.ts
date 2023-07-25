@@ -1,9 +1,11 @@
 import { Order } from '@/interfaces'
+import { saveToLocalStorage } from '@/utils/localStorage'
 import { defineStore } from 'pinia'
 
 export const useMainStore = defineStore('main', {
   state: () => ({
     selected: <string[]>[],
+    token: '',
     allOrders: new Array(10)
       .fill({
         id: '01239',
@@ -35,6 +37,13 @@ export const useMainStore = defineStore('main', {
       } else {
         this.selected.push(id)
       }
+    },
+    setToken(t: string) {
+      this.token = t
+    },
+    logout() {
+      this.token = ''
+      saveToLocalStorage('user', '')
     },
     selectAll() {
       this.selected = this.allOrders.map((order: Order) => order.id)

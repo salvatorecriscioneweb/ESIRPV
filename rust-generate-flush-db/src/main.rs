@@ -2,6 +2,7 @@ use std::env;
 
 use crate::db::DB;
 
+use crate::document::Document;
 use crate::errors::AppError;
 
 mod db;
@@ -17,6 +18,8 @@ fn main() {
     let generate_cmd = "generate";
     // rust-generate-flush-db digest [file] db.sqlite
     let digest_cmd = "digest";
+    // rust-generate-flush-db document [client_data] [order_id] db.sqlite
+    let document_cmd = "document";
 
     let args: Vec<String> = env::args().collect();
     if args.len() < 3 {
@@ -48,5 +51,17 @@ fn main() {
         let file = args.get(2).unwrap();
         println!("DIGEST {} of file {}", db_path, file);
         Some(db.digest_file(file));
+    }
+    // rust-generate-flush-db document [client_data] [order_id] db.sqlite
+    if cmd.eq_ignore_ascii_case(document_cmd) {
+        let client_data = args.get(2).unwrap().to_owned();
+        let order_id = args.get(3).unwrap().to_owned();
+
+        if args.len() < 3 {
+            return;
+        }
+        let d = Document::default();
+        d.generate(client_data.clone(), order_id.clone());
+        println!("GENERATE DOC {:?}", order_id);
     }
 }

@@ -1,16 +1,15 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from .models import Client, ProductDetails, Order, ProductsList
-from rest_framework import viewsets
-from rest_framework import permissions
+from rest_framework import viewsets, permissions, status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from .serializers import UserSerializer, GroupSerializer, ClientSerializer, ProductDetailsSerializer, ProductListSerializer, OrderSerializer
 
-# # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
-
 
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
@@ -36,3 +35,6 @@ class ProductsListViewSet(viewsets.ModelViewSet):
     queryset = ProductsList.objects.all()
     serializer_class = ProductListSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+# API Reply
+

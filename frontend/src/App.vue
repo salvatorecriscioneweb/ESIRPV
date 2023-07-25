@@ -58,6 +58,10 @@ const tabsToSee = computed(() => {
       action: 'ORDERS',
       label: 'All orders',
     },
+    {
+      action: 'LOGOUT',
+      label: 'Logout',
+    },
   ]
   const route = useRoute()
   switch (route.path) {
@@ -76,6 +80,9 @@ function onClick(action?: string) {
   switch (action) {
     case 'SEND':
       console.log('send')
+      break
+    case 'LOGOUT':
+      store.logout()
       break
     case 'SELECT_UNSELECT':
       if (store.allSelected) {

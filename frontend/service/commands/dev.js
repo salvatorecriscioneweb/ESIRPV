@@ -27,6 +27,7 @@ compiler.hooks.done.tap('serve', (stats) => {
   if (stats.hasErrors()) {
     return
   }
+  console.log(`Current API Endpoint ${process.env?.API_URL}`)
   console.log()
   console.log()
   console.log(`App running at:`)

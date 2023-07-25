@@ -1,21 +1,23 @@
-pub struct OrderProduct {
+// ProductsList in Django
+pub struct ProductsList {
+    order: String,
     quantity: usize,
-    sku: String,
+    product: String,
 }
-pub struct InfoAddress {
-    city: String,
-    cap: String,
+pub struct Client {
+    id: String,
     name: String,
     surname: String,
-    phone: String,
+    address: String,
 }
 pub struct Order {
-    id: String,                          // mandatory
-    number: String,                      // mandatory
-    products: Option<Vec<OrderProduct>>, // can be empty
-    receiver: InfoAddress,               // mandatory
-    sender: InfoAddress,                 // mandatory
-    timestamp: String,                   // mandatory
+    order_id: String,                   // mandatory
+    number: String,                     // mandatory
+    product: Option<Vec<ProductsList>>, // can be empty
+    client: String,                     // mandatory client
+    timestamp: String,                  // mandatory
 }
 
 impl Order {}
+impl ProductsList {}
+impl Client {}

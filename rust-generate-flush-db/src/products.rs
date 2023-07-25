@@ -1,7 +1,8 @@
-pub struct Product {
-    sku: String,
-    img: String,
+pub struct ProductDetails {
     name: String,
+    price: f32,
+    sku: String,
+    image: String,
 }
 
-impl Product {}
+impl ProductDetails {}
