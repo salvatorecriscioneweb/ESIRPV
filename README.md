@@ -51,6 +51,58 @@ Requirements:
 `pip install django`
 `pip install djangorestframework`
 
+##### Routes:
+**Login**:
+*Request*
+`POST /api-token-auth/ | Formdata(username, password)` 
+Response
+```
+{
+	"token": String
+}
+```
+
+**Generate Document**:
+Request
+`GET /document?orderId=ABC123` 
+Response
+FILE Binary PDF
+![Route Screenshot](https://github.com/salvatorecriscioneweb/ESIRPV/images/document_print.png)
+**Get** **Orders**:
+Request:
+`GET /get-orders`
+Response:
+```
+{
+	"orders":  [
+		{
+			"order":  {
+				"id":  1,
+				"order_id":  "ABC123",
+				"address":  "Address, Tallinn 10026",
+				"client_id":  "1",
+				"timestamp":  "2023-07-26T19:45:57Z"
+			},
+		"list":  [
+			{
+				"id":  1,
+				"order_id":  1,
+				"number":  "1",
+				"product_id":  1,
+				"quantity":  4
+			}
+		],
+		"client":  [
+			{
+				"name":  "Salvatore",
+				"surname":  "Criscione",
+				"id":  "1",
+				"address":  "Address, Tallinn 10026"
+				}
+		]
+	}
+]}```
+
 TODO!
 
 ### Frontend

@@ -8,6 +8,8 @@ frontend/dist
 .vscode
 .DS_Store
 
+backend/backend/db.sqlite3
+
 # local env files
 frontend/.env*
 frontend/.env.local
