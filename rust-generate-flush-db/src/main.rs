@@ -11,6 +11,8 @@ mod errors;
 mod order;
 mod products;
 
+const VERSION: &str = "0.0.1";
+
 fn main() {
     // rust-generate-flush-db flush db.sqlite
     let flush_cmd = "flush";
@@ -20,6 +22,8 @@ fn main() {
     let digest_cmd = "digest";
     // rust-generate-flush-db document [client_data] [order_id] db.sqlite
     let document_cmd = "document";
+    // rust-generate-flush-db version
+    let version_cmd = "version";
 
     let args: Vec<String> = env::args().collect();
     if args.len() < 3 {
@@ -63,5 +67,8 @@ fn main() {
         let d = Document::default();
         d.generate(client_data.clone(), order_id.clone());
         println!("GENERATE DOC {:?}", order_id);
+    }
+    if cmd.eq_ignore_ascii_case(version_cmd) {
+        println!("{}", VERSION);
     }
 }

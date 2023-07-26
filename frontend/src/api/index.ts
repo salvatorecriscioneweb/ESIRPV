@@ -1,4 +1,4 @@
-import { ILoginRequest, ILoginResponse } from '@/interfaces'
+import { ILoginRequest, ILoginResponse, IOrderResponse } from '@/interfaces'
 import getApiHost from '@/utils/host'
 import axios from 'axios'
 
@@ -11,4 +11,12 @@ export function login(data: ILoginRequest): Promise<{ data: ILoginResponse; stat
     data: bodyFormData,
     headers: { 'Content-Type': 'multipart/form-data' },
   })
+}
+
+export function loadProducts(): Promise<{
+  orders: IOrderResponse[]
+}> {
+  return axios(`${getApiHost()}/get-orders`, {
+    method: 'GET',
+  }).then((res) => res.data)
 }

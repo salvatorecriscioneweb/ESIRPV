@@ -32,15 +32,29 @@ import { RadioGroupOption, RadioGroup } from '@headlessui/vue'
 import OrderTile from './ordersTile/index.vue'
 import { useMainStore } from '@/stores/main'
 import { mapActions, mapState, mapStores } from 'pinia'
+import { loadProducts } from '@/api'
 
 export default defineComponent({
   components: { RadioGroupOption, RadioGroup, OrderTile },
+  data() {
+    return {
+      isLoading: false,
+    }
+  },
   computed: {
     ...mapStores(useMainStore),
     ...mapState(useMainStore, ['allSelected', 'selected', 'allOrders']),
   },
+  async mounted() {
+    this.loadOrders()
+  },
   methods: {
     ...mapActions(useMainStore, ['selectItem']),
+    async loadOrders() {
+      const store = useMainStore()
+      const res = await loadProducts()
+      store.setOrders(res.orders)
+    },
   },
 })
 </script>
