@@ -66,7 +66,12 @@ Response
 Request
 `GET /document?orderId=ABC123` 
 Response
+
 FILE Binary PDF
+
+Example ( Address is random )
+
+
 ![Route Screenshot](https://raw.githubusercontent.com/salvatorecriscioneweb/ESIRPV/main/images/document_print.png)
 **Get** **Orders**:
 Request:
