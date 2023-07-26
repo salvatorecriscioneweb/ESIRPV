@@ -8,6 +8,7 @@
 | Label Generation PDF   | X    |        |      |   |
 | Code128 Generation | X    |        |      |   |
 | QR Code Generation | X    |        |      |   |
+| Digest Sha256 File | X    |        |      |   |
 | DB      |      | X      |      |   |
 | UI      |      |        | X    |   |
 
